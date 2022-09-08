@@ -1,0 +1,676 @@
+terraform_version = "1.2.9"
+
+planned_values = {
+	"outputs": {
+		"sse_algorithm": {
+			"name":      "sse_algorithm",
+			"sensitive": false,
+			"value":     "aws:kms",
+		},
+	},
+	"resources": {
+		"aws_kms_key.s3": {
+			"address":        "aws_kms_key.s3",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "s3",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_kms_key",
+			"values": {
+				"bypass_policy_lockout_safety_check": false,
+				"customer_master_key_spec":           "SYMMETRIC_DEFAULT",
+				"deletion_window_in_days":            7,
+				"description":                        "AWS KMS Customer-managed key",
+				"enable_key_rotation":                false,
+				"is_enabled":                         true,
+				"key_usage":                          "ENCRYPT_DECRYPT",
+				"tags": {
+					"Owner": "rchao@hashicorp.com",
+					"name":  "Roger-Test-Bucket",
+				},
+				"tags_all": {
+					"Owner": "rchao@hashicorp.com",
+					"name":  "Roger-Test-Bucket",
+				},
+			},
+		},
+		"aws_s3_bucket.bucket": {
+			"address":        "aws_s3_bucket.bucket",
+			"depends_on":     [],
+			"deposed_key":    "",
+			"index":          null,
+			"mode":           "managed",
+			"module_address": "",
+			"name":           "bucket",
+			"provider_name":  "registry.terraform.io/hashicorp/aws",
+			"tainted":        false,
+			"type":           "aws_s3_bucket",
+			"values": {
+				"acl":           "private",
+				"bucket":        "rchao-s3-bucket",
+				"bucket_prefix": null,
+				"force_destroy": false,
+				"server_side_encryption_configuration": [
+					{
+						"rule": [
+							{
+								"apply_server_side_encryption_by_default": [
+									{
+										"sse_algorithm": "aws:kms",
+									},
+								],
+								"bucket_key_enabled": null,
+							},
+						],
+					},
+				],
+				"tags": {
+					"Owner": "rchao@hashicorp.com",
+					"name":  "Roger-Test-Bucket",
+				},
+				"tags_all": {
+					"Owner": "rchao@hashicorp.com",
+					"name":  "Roger-Test-Bucket",
+				},
+				"timeouts": null,
+			},
+		},
+	},
+}
+
+variables = {
+	"aws_region": {
+		"name":  "aws_region",
+		"value": "us-east-1",
+	},
+	"bucket_acl": {
+		"name":  "bucket_acl",
+		"value": "private",
+	},
+	"prefix": {
+		"name":  "prefix",
+		"value": "rchao",
+	},
+}
+
+resource_changes = {
+	"aws_kms_key.s3": {
+		"address": "aws_kms_key.s3",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"bypass_policy_lockout_safety_check": false,
+				"customer_master_key_spec":           "SYMMETRIC_DEFAULT",
+				"deletion_window_in_days":            7,
+				"description":                        "AWS KMS Customer-managed key",
+				"enable_key_rotation":                false,
+				"is_enabled":                         true,
+				"key_usage":                          "ENCRYPT_DECRYPT",
+				"tags": {
+					"Owner": "rchao@hashicorp.com",
+					"name":  "Roger-Test-Bucket",
+				},
+				"tags_all": {
+					"Owner": "rchao@hashicorp.com",
+					"name":  "Roger-Test-Bucket",
+				},
+			},
+			"after_unknown": {
+				"arn":          true,
+				"id":           true,
+				"key_id":       true,
+				"multi_region": true,
+				"policy":       true,
+				"tags":         {},
+				"tags_all":     {},
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "s3",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_kms_key",
+	},
+	"aws_s3_bucket.bucket": {
+		"address": "aws_s3_bucket.bucket",
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after": {
+				"acl":           "private",
+				"bucket":        "rchao-s3-bucket",
+				"bucket_prefix": null,
+				"force_destroy": false,
+				"server_side_encryption_configuration": [
+					{
+						"rule": [
+							{
+								"apply_server_side_encryption_by_default": [
+									{
+										"sse_algorithm": "aws:kms",
+									},
+								],
+								"bucket_key_enabled": null,
+							},
+						],
+					},
+				],
+				"tags": {
+					"Owner": "rchao@hashicorp.com",
+					"name":  "Roger-Test-Bucket",
+				},
+				"tags_all": {
+					"Owner": "rchao@hashicorp.com",
+					"name":  "Roger-Test-Bucket",
+				},
+				"timeouts": null,
+			},
+			"after_unknown": {
+				"acceleration_status": true,
+				"arn":                         true,
+				"bucket_domain_name":          true,
+				"bucket_regional_domain_name": true,
+				"cors_rule":                   true,
+				"grant":                       true,
+				"hosted_zone_id":              true,
+				"id":                          true,
+				"lifecycle_rule":              true,
+				"logging":                     true,
+				"object_lock_configuration":   true,
+				"object_lock_enabled":         true,
+				"policy":                      true,
+				"region":                      true,
+				"replication_configuration":   true,
+				"request_payer":               true,
+				"server_side_encryption_configuration": [
+					{
+						"rule": [
+							{
+								"apply_server_side_encryption_by_default": [
+									{
+										"kms_master_key_id": true,
+									},
+								],
+							},
+						],
+					},
+				],
+				"tags":             {},
+				"tags_all":         {},
+				"versioning":       true,
+				"website":          true,
+				"website_domain":   true,
+				"website_endpoint": true,
+			},
+			"before": null,
+		},
+		"deposed":        "",
+		"index":          null,
+		"mode":           "managed",
+		"module_address": "",
+		"name":           "bucket",
+		"provider_name":  "registry.terraform.io/hashicorp/aws",
+		"type":           "aws_s3_bucket",
+	},
+}
+
+output_changes = {
+	"sse_algorithm": {
+		"change": {
+			"actions": [
+				"create",
+			],
+			"after":         "aws:kms",
+			"after_unknown": false,
+			"before":        null,
+		},
+		"name": "sse_algorithm",
+	},
+}
+
+raw = {
+	"configuration": {
+		"provider_config": {
+			"aws": {
+				"expressions": {
+					"region": {
+						"references": [
+							"var.aws_region",
+						],
+					},
+				},
+				"full_name": "registry.terraform.io/hashicorp/aws",
+				"name":      "aws",
+			},
+		},
+		"root_module": {
+			"outputs": {
+				"sse_algorithm": {
+					"expression": {
+						"references": [
+							"aws_s3_bucket.bucket.server_side_encryption_configuration[0].rule[0].apply_server_side_encryption_by_default[0].sse_algorithm",
+							"aws_s3_bucket.bucket.server_side_encryption_configuration[0].rule[0].apply_server_side_encryption_by_default[0]",
+							"aws_s3_bucket.bucket.server_side_encryption_configuration[0].rule[0].apply_server_side_encryption_by_default",
+							"aws_s3_bucket.bucket.server_side_encryption_configuration[0].rule[0]",
+							"aws_s3_bucket.bucket.server_side_encryption_configuration[0].rule",
+							"aws_s3_bucket.bucket.server_side_encryption_configuration[0]",
+							"aws_s3_bucket.bucket.server_side_encryption_configuration",
+							"aws_s3_bucket.bucket",
+						],
+					},
+				},
+			},
+			"resources": [
+				{
+					"address": "aws_kms_key.s3",
+					"expressions": {
+						"deletion_window_in_days": {
+							"constant_value": 7,
+						},
+						"description": {
+							"constant_value": "AWS KMS Customer-managed key",
+						},
+						"enable_key_rotation": {
+							"constant_value": false,
+						},
+						"is_enabled": {
+							"constant_value": true,
+						},
+						"key_usage": {
+							"constant_value": "ENCRYPT_DECRYPT",
+						},
+						"tags": {
+							"constant_value": {
+								"Owner": "rchao@hashicorp.com",
+								"name":  "Roger-Test-Bucket",
+							},
+						},
+					},
+					"mode":                "managed",
+					"name":                "s3",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_kms_key",
+				},
+				{
+					"address": "aws_s3_bucket.bucket",
+					"expressions": {
+						"acl": {
+							"references": [
+								"var.bucket_acl",
+							],
+						},
+						"bucket": {
+							"references": [
+								"var.prefix",
+							],
+						},
+						"server_side_encryption_configuration": [
+							{
+								"rule": [
+									{
+										"apply_server_side_encryption_by_default": [
+											{
+												"kms_master_key_id": {
+													"references": [
+														"aws_kms_key.s3.arn",
+														"aws_kms_key.s3",
+													],
+												},
+												"sse_algorithm": {
+													"constant_value": "aws:kms",
+												},
+											},
+										],
+									},
+								],
+							},
+						],
+						"tags": {
+							"constant_value": {
+								"Owner": "rchao@hashicorp.com",
+								"name":  "Roger-Test-Bucket",
+							},
+						},
+					},
+					"mode":                "managed",
+					"name":                "bucket",
+					"provider_config_key": "aws",
+					"schema_version":      0,
+					"type":                "aws_s3_bucket",
+				},
+			],
+			"variables": {
+				"aws_region": {
+					"default":     "us-east-1",
+					"description": "AWS region",
+				},
+				"bucket_acl": {
+					"default":     "private",
+					"description": "ACL for S3 bucket: private, public-read, public-read-write, etc",
+				},
+				"prefix": {
+					"default": "rchao",
+				},
+			},
+		},
+	},
+	"format_version": "1.1",
+	"output_changes": {
+		"sse_algorithm": {
+			"actions": [
+				"create",
+			],
+			"after":            "aws:kms",
+			"after_sensitive":  false,
+			"after_unknown":    false,
+			"before":           null,
+			"before_sensitive": false,
+		},
+	},
+	"planned_values": {
+		"outputs": {
+			"sse_algorithm": {
+				"sensitive": false,
+				"value":     "aws:kms",
+			},
+		},
+		"root_module": {
+			"resources": [
+				{
+					"address":        "aws_kms_key.s3",
+					"mode":           "managed",
+					"name":           "s3",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"sensitive_values": {
+						"tags":     {},
+						"tags_all": {},
+					},
+					"type": "aws_kms_key",
+					"values": {
+						"bypass_policy_lockout_safety_check": false,
+						"customer_master_key_spec":           "SYMMETRIC_DEFAULT",
+						"deletion_window_in_days":            7,
+						"description":                        "AWS KMS Customer-managed key",
+						"enable_key_rotation":                false,
+						"is_enabled":                         true,
+						"key_usage":                          "ENCRYPT_DECRYPT",
+						"tags": {
+							"Owner": "rchao@hashicorp.com",
+							"name":  "Roger-Test-Bucket",
+						},
+						"tags_all": {
+							"Owner": "rchao@hashicorp.com",
+							"name":  "Roger-Test-Bucket",
+						},
+					},
+				},
+				{
+					"address":        "aws_s3_bucket.bucket",
+					"mode":           "managed",
+					"name":           "bucket",
+					"provider_name":  "registry.terraform.io/hashicorp/aws",
+					"schema_version": 0,
+					"sensitive_values": {
+						"cors_rule":                 [],
+						"grant":                     [],
+						"lifecycle_rule":            [],
+						"logging":                   [],
+						"object_lock_configuration": [],
+						"replication_configuration": [],
+						"server_side_encryption_configuration": [
+							{
+								"rule": [
+									{
+										"apply_server_side_encryption_by_default": [
+											{},
+										],
+									},
+								],
+							},
+						],
+						"tags":       {},
+						"tags_all":   {},
+						"versioning": [],
+						"website":    [],
+					},
+					"type": "aws_s3_bucket",
+					"values": {
+						"acl":           "private",
+						"bucket":        "rchao-s3-bucket",
+						"bucket_prefix": null,
+						"force_destroy": false,
+						"server_side_encryption_configuration": [
+							{
+								"rule": [
+									{
+										"apply_server_side_encryption_by_default": [
+											{
+												"sse_algorithm": "aws:kms",
+											},
+										],
+										"bucket_key_enabled": null,
+									},
+								],
+							},
+						],
+						"tags": {
+							"Owner": "rchao@hashicorp.com",
+							"name":  "Roger-Test-Bucket",
+						},
+						"tags_all": {
+							"Owner": "rchao@hashicorp.com",
+							"name":  "Roger-Test-Bucket",
+						},
+						"timeouts": null,
+					},
+				},
+			],
+		},
+	},
+	"prior_state": {
+		"format_version":    "1.0",
+		"terraform_version": "1.2.9",
+		"values": {
+			"outputs": {
+				"sse_algorithm": {
+					"sensitive": false,
+					"value":     "aws:kms",
+				},
+			},
+			"root_module": {},
+		},
+	},
+	"relevant_attributes": [
+		{
+			"attribute": [
+				"arn",
+			],
+			"resource": "aws_kms_key.s3",
+		},
+		{
+			"attribute": [
+				"server_side_encryption_configuration",
+				0,
+				"rule",
+				0,
+				"apply_server_side_encryption_by_default",
+				0,
+				"sse_algorithm",
+			],
+			"resource": "aws_s3_bucket.bucket",
+		},
+	],
+	"resource_changes": [
+		{
+			"address": "aws_kms_key.s3",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"bypass_policy_lockout_safety_check": false,
+					"customer_master_key_spec":           "SYMMETRIC_DEFAULT",
+					"deletion_window_in_days":            7,
+					"description":                        "AWS KMS Customer-managed key",
+					"enable_key_rotation":                false,
+					"is_enabled":                         true,
+					"key_usage":                          "ENCRYPT_DECRYPT",
+					"tags": {
+						"Owner": "rchao@hashicorp.com",
+						"name":  "Roger-Test-Bucket",
+					},
+					"tags_all": {
+						"Owner": "rchao@hashicorp.com",
+						"name":  "Roger-Test-Bucket",
+					},
+				},
+				"after_sensitive": {
+					"tags":     {},
+					"tags_all": {},
+				},
+				"after_unknown": {
+					"arn":          true,
+					"id":           true,
+					"key_id":       true,
+					"multi_region": true,
+					"policy":       true,
+					"tags":         {},
+					"tags_all":     {},
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "s3",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_kms_key",
+		},
+		{
+			"address": "aws_s3_bucket.bucket",
+			"change": {
+				"actions": [
+					"create",
+				],
+				"after": {
+					"acl":           "private",
+					"bucket":        "rchao-s3-bucket",
+					"bucket_prefix": null,
+					"force_destroy": false,
+					"server_side_encryption_configuration": [
+						{
+							"rule": [
+								{
+									"apply_server_side_encryption_by_default": [
+										{
+											"sse_algorithm": "aws:kms",
+										},
+									],
+									"bucket_key_enabled": null,
+								},
+							],
+						},
+					],
+					"tags": {
+						"Owner": "rchao@hashicorp.com",
+						"name":  "Roger-Test-Bucket",
+					},
+					"tags_all": {
+						"Owner": "rchao@hashicorp.com",
+						"name":  "Roger-Test-Bucket",
+					},
+					"timeouts": null,
+				},
+				"after_sensitive": {
+					"cors_rule":                 [],
+					"grant":                     [],
+					"lifecycle_rule":            [],
+					"logging":                   [],
+					"object_lock_configuration": [],
+					"replication_configuration": [],
+					"server_side_encryption_configuration": [
+						{
+							"rule": [
+								{
+									"apply_server_side_encryption_by_default": [
+										{},
+									],
+								},
+							],
+						},
+					],
+					"tags":       {},
+					"tags_all":   {},
+					"versioning": [],
+					"website":    [],
+				},
+				"after_unknown": {
+					"acceleration_status": true,
+					"arn":                         true,
+					"bucket_domain_name":          true,
+					"bucket_regional_domain_name": true,
+					"cors_rule":                   true,
+					"grant":                       true,
+					"hosted_zone_id":              true,
+					"id":                          true,
+					"lifecycle_rule":              true,
+					"logging":                     true,
+					"object_lock_configuration":   true,
+					"object_lock_enabled":         true,
+					"policy":                      true,
+					"region":                      true,
+					"replication_configuration":   true,
+					"request_payer":               true,
+					"server_side_encryption_configuration": [
+						{
+							"rule": [
+								{
+									"apply_server_side_encryption_by_default": [
+										{
+											"kms_master_key_id": true,
+										},
+									],
+								},
+							],
+						},
+					],
+					"tags":             {},
+					"tags_all":         {},
+					"versioning":       true,
+					"website":          true,
+					"website_domain":   true,
+					"website_endpoint": true,
+				},
+				"before":           null,
+				"before_sensitive": false,
+			},
+			"mode":          "managed",
+			"name":          "bucket",
+			"provider_name": "registry.terraform.io/hashicorp/aws",
+			"type":          "aws_s3_bucket",
+		},
+	],
+	"terraform_version": "1.2.9",
+	"variables": {
+		"aws_region": {
+			"value": "us-east-1",
+		},
+		"bucket_acl": {
+			"value": "private",
+		},
+		"prefix": {
+			"value": "rchao",
+		},
+	},
+}

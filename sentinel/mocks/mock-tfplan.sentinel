@@ -1,0 +1,401 @@
+import "strings"
+import "types"
+
+_modules = {
+	"root": {
+		"data": {},
+		"path": [],
+		"resources": {
+			"aws_kms_key": {
+				"s3": {
+					0: {
+						"applied": {
+							"bypass_policy_lockout_safety_check": false,
+							"customer_master_key_spec":           "SYMMETRIC_DEFAULT",
+							"deletion_window_in_days":            7,
+							"description":                        "AWS KMS Customer-managed key",
+							"enable_key_rotation":                false,
+							"is_enabled":                         true,
+							"key_usage":                          "ENCRYPT_DECRYPT",
+							"tags": {
+								"Owner": "rchao@hashicorp.com",
+								"name":  "Roger-Test-Bucket",
+							},
+							"tags_all": {
+								"Owner": "rchao@hashicorp.com",
+								"name":  "Roger-Test-Bucket",
+							},
+						},
+						"destroy": false,
+						"diff": {
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"bypass_policy_lockout_safety_check": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"customer_master_key_spec": {
+								"computed": false,
+								"new":      "SYMMETRIC_DEFAULT",
+								"old":      "",
+							},
+							"deletion_window_in_days": {
+								"computed": false,
+								"new":      "7",
+								"old":      "",
+							},
+							"description": {
+								"computed": false,
+								"new":      "AWS KMS Customer-managed key",
+								"old":      "",
+							},
+							"enable_key_rotation": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"is_enabled": {
+								"computed": false,
+								"new":      "true",
+								"old":      "",
+							},
+							"key_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"key_usage": {
+								"computed": false,
+								"new":      "ENCRYPT_DECRYPT",
+								"old":      "",
+							},
+							"multi_region": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"policy": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"tags.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags.Owner": {
+								"computed": false,
+								"new":      "rchao@hashicorp.com",
+								"old":      "",
+							},
+							"tags.name": {
+								"computed": false,
+								"new":      "Roger-Test-Bucket",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags_all.Owner": {
+								"computed": false,
+								"new":      "rchao@hashicorp.com",
+								"old":      "",
+							},
+							"tags_all.name": {
+								"computed": false,
+								"new":      "Roger-Test-Bucket",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+			},
+			"aws_s3_bucket": {
+				"bucket": {
+					0: {
+						"applied": {
+							"acl":           "private",
+							"bucket":        "rchao-s3-bucket",
+							"bucket_prefix": null,
+							"force_destroy": false,
+							"server_side_encryption_configuration": [
+								{
+									"rule": [
+										{
+											"apply_server_side_encryption_by_default": [
+												{
+													"sse_algorithm": "aws:kms",
+												},
+											],
+											"bucket_key_enabled": null,
+										},
+									],
+								},
+							],
+							"tags": {
+								"Owner": "rchao@hashicorp.com",
+								"name":  "Roger-Test-Bucket",
+							},
+							"tags_all": {
+								"Owner": "rchao@hashicorp.com",
+								"name":  "Roger-Test-Bucket",
+							},
+							"timeouts": null,
+						},
+						"destroy": false,
+						"diff": {
+							"acceleration_status": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"acl": {
+								"computed": false,
+								"new":      "private",
+								"old":      "",
+							},
+							"arn": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"bucket": {
+								"computed": false,
+								"new":      "rchao-s3-bucket",
+								"old":      "",
+							},
+							"bucket_domain_name": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"bucket_prefix": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"bucket_regional_domain_name": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"cors_rule.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"force_destroy": {
+								"computed": false,
+								"new":      "false",
+								"old":      "",
+							},
+							"grant.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"hosted_zone_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"lifecycle_rule.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"logging.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"object_lock_configuration.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"object_lock_enabled": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"policy": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"region": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"replication_configuration.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"request_payer": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"server_side_encryption_configuration.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"server_side_encryption_configuration.0.%": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"server_side_encryption_configuration.0.rule.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"server_side_encryption_configuration.0.rule.0.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"server_side_encryption_configuration.0.rule.0.apply_server_side_encryption_by_default.#": {
+								"computed": false,
+								"new":      "1",
+								"old":      "",
+							},
+							"server_side_encryption_configuration.0.rule.0.apply_server_side_encryption_by_default.0.%": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"server_side_encryption_configuration.0.rule.0.apply_server_side_encryption_by_default.0.kms_master_key_id": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"server_side_encryption_configuration.0.rule.0.apply_server_side_encryption_by_default.0.sse_algorithm": {
+								"computed": false,
+								"new":      "aws:kms",
+								"old":      "",
+							},
+							"server_side_encryption_configuration.0.rule.0.bucket_key_enabled": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"tags.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags.Owner": {
+								"computed": false,
+								"new":      "rchao@hashicorp.com",
+								"old":      "",
+							},
+							"tags.name": {
+								"computed": false,
+								"new":      "Roger-Test-Bucket",
+								"old":      "",
+							},
+							"tags_all.%": {
+								"computed": false,
+								"new":      "2",
+								"old":      "",
+							},
+							"tags_all.Owner": {
+								"computed": false,
+								"new":      "rchao@hashicorp.com",
+								"old":      "",
+							},
+							"tags_all.name": {
+								"computed": false,
+								"new":      "Roger-Test-Bucket",
+								"old":      "",
+							},
+							"timeouts": {
+								"computed": false,
+								"new":      "",
+								"old":      "",
+							},
+							"versioning.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"website.#": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"website_domain": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+							"website_endpoint": {
+								"computed": true,
+								"new":      "",
+								"old":      "",
+							},
+						},
+						"requires_new": false,
+					},
+				},
+			},
+		},
+	},
+}
+
+module_paths = [
+	[],
+]
+
+terraform_version = "1.2.9"
+
+variables = {
+	"aws_region": "us-east-1",
+	"bucket_acl": "private",
+	"prefix":     "rchao",
+}
+
+module = func(path) {
+	if types.type_of(path) is not "list" {
+		error("expected list, got", types.type_of(path))
+	}
+
+	if length(path) < 1 {
+		return _modules.root
+	}
+
+	addr = []
+	for path as p {
+		append(addr, "module")
+		append(addr, p)
+	}
+
+	return _modules[strings.join(addr, ".")]
+}
+
+data = _modules.root.data
+path = _modules.root.path
+resources = _modules.root.resources

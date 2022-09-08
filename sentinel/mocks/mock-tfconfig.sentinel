@@ -1,0 +1,168 @@
+import "strings"
+import "types"
+
+_modules = {
+	"root": {
+		"data":    {},
+		"modules": {},
+		"outputs": {
+			"sse_algorithm": {
+				"depends_on":  [],
+				"description": "",
+				"references": [
+					"aws_s3_bucket.bucket.server_side_encryption_configuration[0].rule[0].apply_server_side_encryption_by_default[0].sse_algorithm",
+					"aws_s3_bucket.bucket.server_side_encryption_configuration[0].rule[0].apply_server_side_encryption_by_default[0]",
+					"aws_s3_bucket.bucket.server_side_encryption_configuration[0].rule[0].apply_server_side_encryption_by_default",
+					"aws_s3_bucket.bucket.server_side_encryption_configuration[0].rule[0]",
+					"aws_s3_bucket.bucket.server_side_encryption_configuration[0].rule",
+					"aws_s3_bucket.bucket.server_side_encryption_configuration[0]",
+					"aws_s3_bucket.bucket.server_side_encryption_configuration",
+					"aws_s3_bucket.bucket",
+				],
+				"sensitive": false,
+				"value":     undefined,
+			},
+		},
+		"providers": {
+			"aws": {
+				"alias": {
+					"": {
+						"config": {},
+						"references": {
+							"region": [
+								"var.aws_region",
+							],
+						},
+						"version": "",
+					},
+				},
+				"config": {},
+				"references": {
+					"region": [
+						"var.aws_region",
+					],
+				},
+				"version": "",
+			},
+		},
+		"resources": {
+			"aws_kms_key": {
+				"s3": {
+					"config": {
+						"deletion_window_in_days": 7,
+						"description":             "AWS KMS Customer-managed key",
+						"enable_key_rotation":     false,
+						"is_enabled":              true,
+						"key_usage":               "ENCRYPT_DECRYPT",
+						"tags": {
+							"Owner": "rchao@hashicorp.com",
+							"name":  "Roger-Test-Bucket",
+						},
+					},
+					"provisioners": null,
+					"references": {
+						"deletion_window_in_days": [],
+						"description":             [],
+						"enable_key_rotation":     [],
+						"is_enabled":              [],
+						"key_usage":               [],
+						"tags":                    [],
+					},
+				},
+			},
+			"aws_s3_bucket": {
+				"bucket": {
+					"config": {
+						"server_side_encryption_configuration": [
+							{
+								"rule": [
+									{
+										"apply_server_side_encryption_by_default": [
+											{
+												"sse_algorithm": "aws:kms",
+											},
+										],
+									},
+								],
+							},
+						],
+						"tags": {
+							"Owner": "rchao@hashicorp.com",
+							"name":  "Roger-Test-Bucket",
+						},
+					},
+					"provisioners": null,
+					"references": {
+						"acl": [
+							"var.bucket_acl",
+						],
+						"bucket": [
+							"var.prefix",
+						],
+						"server_side_encryption_configuration": [
+							{
+								"rule": [
+									{
+										"apply_server_side_encryption_by_default": [
+											{
+												"kms_master_key_id": [
+													"aws_kms_key.s3.arn",
+													"aws_kms_key.s3",
+												],
+												"sse_algorithm": [],
+											},
+										],
+									},
+								],
+							},
+						],
+						"tags": [],
+					},
+				},
+			},
+		},
+		"variables": {
+			"aws_region": {
+				"default":     "us-east-1",
+				"description": "AWS region",
+			},
+			"bucket_acl": {
+				"default":     "private",
+				"description": "ACL for S3 bucket: private, public-read, public-read-write, etc",
+			},
+			"prefix": {
+				"default":     "rchao",
+				"description": "",
+			},
+		},
+	},
+}
+
+module_paths = [
+	[],
+]
+
+module = func(path) {
+	if types.type_of(path) is not "list" {
+		error("expected list, got", types.type_of(path))
+	}
+
+	if length(path) < 1 {
+		return _modules.root
+	}
+
+	addr = []
+	for path as p {
+		append(addr, "module")
+		append(addr, p)
+	}
+
+	return _modules[strings.join(addr, ".")]
+}
+
+data = _modules.root.data
+modules = _modules.root.modules
+providers = _modules.root.providers
+resources = _modules.root.resources
+variables = _modules.root.variables
+outputs = _modules.root.outputs
